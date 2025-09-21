@@ -40,246 +40,249 @@ class _LoginScreenState extends State<LoginScreen> {
             padding: const EdgeInsets.all(24.0),
             child: Form(
               key: _formKey,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // App Logo/Icon
-                  Container(
-                    width: 80,
-                    height: 80,
-                    child: Image.asset(
-                      'assets/images/krisi_deep_logo.png',
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // App Logo/Icon
+                    Container(
                       width: 80,
                       height: 80,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(Icons.agriculture,
-                            size: 80, color: Colors.white);
-                      },
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'app_name'.tr(),
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'welcome'.tr(),
-                    style: const TextStyle(fontSize: 16, color: Colors.white70),
-                  ),
-                  const SizedBox(height: 48),
-
-                  // Login Card
-                  Card(
-                    elevation: 8,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(24.0),
-                      child: Column(
-                        children: [
-                          if (!_isOtpSent) ...[
-                            // Phone Number Input
-                            Text(
-                              'enter_phone'.tr(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            const SizedBox(height: 24),
-                            TextFormField(
-                              controller: _phoneController,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                labelText: 'phone_number'.tr(),
-                                prefixText: '+91 ',
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                prefixIcon: const Icon(Icons.phone),
-                              ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter phone number';
-                                }
-                                if (value.length != 10) {
-                                  return 'Please enter valid 10-digit number';
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 24),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: ElevatedButton(
-                                onPressed: _isLoading ? null : _sendOTP,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.green.shade700,
-                                  foregroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                                child: _isLoading
-                                    ? const CircularProgressIndicator(
-                                        color: Colors.white,
-                                      )
-                                    : Text(
-                                        'send_otp'.tr(),
-                                        style: const TextStyle(fontSize: 16),
-                                      ),
-                              ),
-                            ),
-                          ] else ...[
-                            // OTP Verification
-                            Text(
-                              'verify_otp'.tr(),
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              'OTP sent to +91 ${_phoneController.text}',
-                              style: TextStyle(color: Colors.grey.shade600),
-                            ),
-                            const SizedBox(height: 24),
-                            TextFormField(
-                              controller: _otpController,
-                              keyboardType: TextInputType.number,
-                              textAlign: TextAlign.center,
-                              maxLength: 6,
-                              decoration: InputDecoration(
-                                labelText: 'enter_otp'.tr(),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                prefixIcon: const Icon(Icons.security),
-                              ),
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter OTP';
-                                }
-                                if (value.length != 6) {
-                                  return 'Please enter valid 6-digit OTP';
-                                }
-                                return null;
-                              },
-                            ),
-                            const SizedBox(height: 24),
-                            SizedBox(
-                              width: double.infinity,
-                              height: 50,
-                              child: ElevatedButton(
-                                onPressed: _isLoading ? null : _verifyOTP,
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.green.shade700,
-                                  foregroundColor: Colors.white,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                ),
-                                child: _isLoading
-                                    ? const CircularProgressIndicator(
-                                        color: Colors.white,
-                                      )
-                                    : Text(
-                                        'verify'.tr(),
-                                        style: const TextStyle(fontSize: 16),
-                                      ),
-                              ),
-                            ),
-                            const SizedBox(height: 16),
-                            TextButton(
-                              onPressed: _isLoading ? null : _sendOTP,
-                              child: Text('resend_otp'.tr()),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  _isOtpSent = false;
-                                  _otpController.clear();
-                                });
-                              },
-                              child: Text('back'.tr()),
-                            ),
-                          ],
-                        ],
+                      child: Image.asset(
+                        'assets/images/krisi_deep_logo.png',
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(Icons.agriculture,
+                              size: 80, color: Colors.white);
+                        },
                       ),
                     ),
-                  ),
-
-                  const SizedBox(height: 24),
-
-                  // Language Selection
-                  Card(
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                    const SizedBox(height: 16),
+                    Text(
+                      'app_name'.tr(),
+                      style: const TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            'language_selection'.tr(),
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ElevatedButton(
-                                onPressed: () {
-                                  context.setLocale(const Locale('en'));
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      context.locale.languageCode == 'en'
-                                          ? Colors.green.shade700
-                                          : Colors.grey.shade300,
-                                  foregroundColor:
-                                      context.locale.languageCode == 'en'
-                                          ? Colors.white
-                                          : Colors.black,
+                    const SizedBox(height: 8),
+                    Text(
+                      'welcome'.tr(),
+                      style:
+                          const TextStyle(fontSize: 16, color: Colors.white70),
+                    ),
+                    const SizedBox(height: 48),
+
+                    // Login Card
+                    Card(
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: Column(
+                          children: [
+                            if (!_isOtpSent) ...[
+                              // Phone Number Input
+                              Text(
+                                'enter_phone'.tr(),
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
                                 ),
-                                child: Text('english'.tr()),
                               ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  context.setLocale(const Locale('hi'));
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      context.locale.languageCode == 'hi'
-                                          ? Colors.green.shade700
-                                          : Colors.grey.shade300,
-                                  foregroundColor:
-                                      context.locale.languageCode == 'hi'
-                                          ? Colors.white
-                                          : Colors.black,
+                              const SizedBox(height: 24),
+                              TextFormField(
+                                controller: _phoneController,
+                                keyboardType: TextInputType.phone,
+                                decoration: InputDecoration(
+                                  labelText: 'phone_number'.tr(),
+                                  prefixText: '+91 ',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  prefixIcon: const Icon(Icons.phone),
                                 ),
-                                child: Text('hindi'.tr()),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter phone number';
+                                  }
+                                  if (value.length != 10) {
+                                    return 'Please enter valid 10-digit number';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 24),
+                              SizedBox(
+                                width: double.infinity,
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: _isLoading ? null : _sendOTP,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.green.shade700,
+                                    foregroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                  child: _isLoading
+                                      ? const CircularProgressIndicator(
+                                          color: Colors.white,
+                                        )
+                                      : Text(
+                                          'send_otp'.tr(),
+                                          style: const TextStyle(fontSize: 16),
+                                        ),
+                                ),
+                              ),
+                            ] else ...[
+                              // OTP Verification
+                              Text(
+                                'verify_otp'.tr(),
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'OTP sent to +91 ${_phoneController.text}',
+                                style: TextStyle(color: Colors.grey.shade600),
+                              ),
+                              const SizedBox(height: 24),
+                              TextFormField(
+                                controller: _otpController,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                                maxLength: 6,
+                                decoration: InputDecoration(
+                                  labelText: 'enter_otp'.tr(),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  prefixIcon: const Icon(Icons.security),
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter OTP';
+                                  }
+                                  if (value.length != 6) {
+                                    return 'Please enter valid 6-digit OTP';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const SizedBox(height: 24),
+                              SizedBox(
+                                width: double.infinity,
+                                height: 50,
+                                child: ElevatedButton(
+                                  onPressed: _isLoading ? null : _verifyOTP,
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.green.shade700,
+                                    foregroundColor: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                  child: _isLoading
+                                      ? const CircularProgressIndicator(
+                                          color: Colors.white,
+                                        )
+                                      : Text(
+                                          'verify'.tr(),
+                                          style: const TextStyle(fontSize: 16),
+                                        ),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              TextButton(
+                                onPressed: _isLoading ? null : _sendOTP,
+                                child: Text('resend_otp'.tr()),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _isOtpSent = false;
+                                    _otpController.clear();
+                                  });
+                                },
+                                child: Text('back'.tr()),
                               ),
                             ],
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+
+                    const SizedBox(height: 24),
+
+                    // Language Selection
+                    Card(
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              'language_selection'.tr(),
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    context.setLocale(const Locale('en'));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        context.locale.languageCode == 'en'
+                                            ? Colors.green.shade700
+                                            : Colors.grey.shade300,
+                                    foregroundColor:
+                                        context.locale.languageCode == 'en'
+                                            ? Colors.white
+                                            : Colors.black,
+                                  ),
+                                  child: Text('english'.tr()),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    context.setLocale(const Locale('hi'));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        context.locale.languageCode == 'hi'
+                                            ? Colors.green.shade700
+                                            : Colors.grey.shade300,
+                                    foregroundColor:
+                                        context.locale.languageCode == 'hi'
+                                            ? Colors.white
+                                            : Colors.black,
+                                  ),
+                                  child: Text('hindi'.tr()),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

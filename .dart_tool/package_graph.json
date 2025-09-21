@@ -9,6 +9,7 @@
       "dependencies": [
         "cupertino_icons",
         "easy_localization",
+        "fl_chart",
         "flutter",
         "flutter_staggered_animations",
         "geolocator",
@@ -46,6 +47,14 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "fl_chart",
+      "version": "0.68.0",
+      "dependencies": [
+        "equatable",
+        "flutter"
       ]
     },
     {
@@ -243,6 +252,14 @@
         "stream_channel",
         "string_scanner",
         "term_glyph"
+      ]
+    },
+    {
+      "name": "equatable",
+      "version": "2.0.7",
+      "dependencies": [
+        "collection",
+        "meta"
       ]
     },
     {

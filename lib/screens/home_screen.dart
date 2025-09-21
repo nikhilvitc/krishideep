@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'iot_dashboard_screen_simple.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -103,10 +104,58 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           _buildFeatureCard(
                             context,
+                            Icons.sensors,
+                            'IoT Dashboard',
+                            'Real-time soil & weather monitoring',
+                            Colors.blue,
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const IoTDashboardScreen()),
+                            ),
+                          ),
+                          _buildFeatureCard(
+                            context,
+                            Icons.analytics,
+                            'Analytics',
+                            'AI-powered yield predictions & insights',
+                            Colors.purple,
+                            () =>
+                                _showComingSoon(context, 'Analytics Dashboard'),
+                          ),
+                          _buildFeatureCard(
+                            context,
+                            Icons.account_balance,
+                            'Government Schemes',
+                            'Agricultural subsidies & schemes',
+                            Colors.green,
+                            () =>
+                                _showComingSoon(context, 'Government Schemes'),
+                          ),
+                          _buildFeatureCard(
+                            context,
+                            Icons.attach_money,
+                            'Financial Advisory',
+                            'Loans, investments & financial planning',
+                            Colors.orange,
+                            () =>
+                                _showComingSoon(context, 'Financial Advisory'),
+                          ),
+                          _buildFeatureCard(
+                            context,
+                            Icons.forum,
+                            'Farmer Community',
+                            'Connect with experts & farmers',
+                            Colors.teal,
+                            () => _showComingSoon(context, 'Farmer Community'),
+                          ),
+                          _buildFeatureCard(
+                            context,
                             Icons.agriculture,
                             'get_crop_advice'.tr(),
                             'Get AI-powered crop recommendations',
-                            Colors.blue,
+                            Colors.indigo,
                             () => _navigateToTab(context, 1),
                           ),
                           _buildFeatureCard(
@@ -114,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                             Icons.camera_alt,
                             'crop_disease_detection'.tr(),
                             'Detect crop diseases using camera',
-                            Colors.orange,
+                            Colors.red,
                             () => _navigateToTab(context, 2),
                           ),
                           _buildFeatureCard(
@@ -122,16 +171,8 @@ class HomeScreen extends StatelessWidget {
                             Icons.book,
                             'knowledge_faqs'.tr(),
                             'Access farming guidelines & FAQs',
-                            Colors.purple,
+                            Colors.brown,
                             () => _navigateToTab(context, 3),
-                          ),
-                          _buildFeatureCard(
-                            context,
-                            Icons.contact_support,
-                            'contact_support'.tr(),
-                            'Get help from agricultural experts',
-                            Colors.red,
-                            () => _navigateToTab(context, 4),
                           ),
                         ],
                       ),
@@ -263,6 +304,48 @@ class HomeScreen extends StatelessWidget {
         content: Text('Navigate to tab $index'),
         duration: const Duration(seconds: 1),
       ),
+    );
+  }
+
+  void _showComingSoon(BuildContext context, String featureName) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('$featureName'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.rocket_launch,
+                size: 48,
+                color: Colors.blue.shade600,
+              ),
+              const SizedBox(height: 16),
+              Text(
+                '$featureName is coming soon!',
+                style: const TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Advanced backend services are ready and will be integrated in the next update.',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.grey.shade600,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -42,6 +42,9 @@ dependencies:
   
   # UI Enhancements
   flutter_staggered_animations: ^1.1.1
+  
+  # Charts and Data Visualization
+  fl_chart: ^0.68.0
 
 dev_dependencies:
   flutter_test:
