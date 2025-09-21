@@ -56,7 +56,7 @@ class _IoTDashboardScreenState extends State<IoTDashboardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('IoT Dashboard'),
+        title: Text('iot_dashboard'.tr()),
         backgroundColor: Colors.blue.shade700,
         foregroundColor: Colors.white,
         actions: [
@@ -147,7 +147,7 @@ class _IoTDashboardScreenState extends State<IoTDashboardScreen> {
                 Icon(Icons.sensors, color: Colors.blue.shade600),
                 const SizedBox(width: 8),
                 Text(
-                  'Registered Sensors',
+                  'registered_sensors'.tr(),
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -188,7 +188,7 @@ class _IoTDashboardScreenState extends State<IoTDashboardScreen> {
                 Icon(Icons.grass, color: Colors.green.shade600),
                 const SizedBox(width: 8),
                 Text(
-                  'Latest Soil Data',
+                  'latest_soil_data'.tr(),
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -209,25 +209,25 @@ class _IoTDashboardScreenState extends State<IoTDashboardScreen> {
               childAspectRatio: 1.5,
               children: [
                 _buildMetricCard(
-                  'Moisture',
+                  'moisture'.tr(),
                   '${data.moistureLevel.toStringAsFixed(1)}%',
                   Icons.water_drop,
                   Colors.blue,
                 ),
                 _buildMetricCard(
-                  'pH Level',
+                  'ph_level'.tr(),
                   data.phLevel.toStringAsFixed(1),
                   Icons.science,
                   Colors.purple,
                 ),
                 _buildMetricCard(
-                  'Nitrogen',
+                  'nitrogen'.tr(),
                   '${data.nitrogen.toStringAsFixed(1)}mg/kg',
                   Icons.eco,
                   Colors.green,
                 ),
                 _buildMetricCard(
-                  'Temperature',
+                  'temperature'.tr(),
                   '${data.temperature.toStringAsFixed(1)}°C',
                   Icons.thermostat,
                   Colors.orange,
@@ -289,7 +289,7 @@ class _IoTDashboardScreenState extends State<IoTDashboardScreen> {
                 Icon(Icons.warning_amber, color: Colors.orange.shade600),
                 const SizedBox(width: 8),
                 Text(
-                  'Active Alerts',
+                  'active_alerts'.tr(),
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -367,7 +367,7 @@ class _IoTDashboardScreenState extends State<IoTDashboardScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Quick Actions',
+              'quick_actions'.tr(),
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -380,25 +380,25 @@ class _IoTDashboardScreenState extends State<IoTDashboardScreen> {
               childAspectRatio: 2,
               children: [
                 _buildActionButton(
-                  'Schedule Irrigation',
+                  'schedule_irrigation'.tr(),
                   Icons.water,
                   Colors.blue,
                   () => _scheduleIrrigation(),
                 ),
                 _buildActionButton(
-                  'Generate Report',
+                  'generate_report'.tr(),
                   Icons.assignment,
                   Colors.green,
                   () => _generateReport(),
                 ),
                 _buildActionButton(
-                  'View Recommendations',
+                  'view_recommendations'.tr(),
                   Icons.lightbulb,
                   Colors.orange,
                   () => _viewRecommendations(),
                 ),
                 _buildActionButton(
-                  'Sensor Statistics',
+                  'sensor_statistics'.tr(),
                   Icons.analytics,
                   Colors.purple,
                   () => _viewStatistics(),

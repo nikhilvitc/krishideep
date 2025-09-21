@@ -105,8 +105,8 @@ class HomeScreen extends StatelessWidget {
                           _buildFeatureCard(
                             context,
                             Icons.sensors,
-                            'IoT Dashboard',
-                            'Real-time soil & weather monitoring',
+                            'iot_dashboard'.tr(),
+                            'real_time_monitoring'.tr(),
                             Colors.blue,
                             () => Navigator.push(
                               context,
@@ -118,37 +118,37 @@ class HomeScreen extends StatelessWidget {
                           _buildFeatureCard(
                             context,
                             Icons.analytics,
-                            'Analytics',
-                            'AI-powered yield predictions & insights',
+                            'analytics_dashboard'.tr(),
+                            'ai_predictions'.tr(),
                             Colors.purple,
                             () =>
-                                _showComingSoon(context, 'Analytics Dashboard'),
+                                _showComingSoon(context, 'analytics_dashboard'.tr()),
                           ),
                           _buildFeatureCard(
                             context,
                             Icons.account_balance,
-                            'Government Schemes',
-                            'Agricultural subsidies & schemes',
+                            'government_schemes'.tr(),
+                            'subsidies'.tr(),
                             Colors.green,
                             () =>
-                                _showComingSoon(context, 'Government Schemes'),
+                                _showComingSoon(context, 'government_schemes'.tr()),
                           ),
                           _buildFeatureCard(
                             context,
                             Icons.attach_money,
-                            'Financial Advisory',
-                            'Loans, investments & financial planning',
+                            'financial_advisory'.tr(),
+                            'financial_planning'.tr(),
                             Colors.orange,
                             () =>
-                                _showComingSoon(context, 'Financial Advisory'),
+                                _showComingSoon(context, 'financial_advisory'.tr()),
                           ),
                           _buildFeatureCard(
                             context,
                             Icons.forum,
-                            'Farmer Community',
-                            'Connect with experts & farmers',
+                            'farmer_community'.tr(),
+                            'community_support'.tr(),
                             Colors.teal,
-                            () => _showComingSoon(context, 'Farmer Community'),
+                            () => _showComingSoon(context, 'farmer_community'.tr()),
                           ),
                           _buildFeatureCard(
                             context,
@@ -323,13 +323,13 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                '$featureName is coming soon!',
+                'coming_soon'.tr(),
                 style: const TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
               Text(
-                'Advanced backend services are ready and will be integrated in the next update.',
+                'backend_ready'.tr(),
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.grey.shade600,
@@ -341,7 +341,7 @@ class HomeScreen extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('OK'),
+              child: Text('ok'.tr()),
             ),
           ],
         );

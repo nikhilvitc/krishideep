@@ -275,6 +275,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                   child: Text('hindi'.tr()),
                                 ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    context.setLocale(const Locale('ta'));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        context.locale.languageCode == 'ta'
+                                            ? Colors.green.shade700
+                                            : Colors.grey.shade300,
+                                    foregroundColor:
+                                        context.locale.languageCode == 'ta'
+                                            ? Colors.white
+                                            : Colors.black,
+                                  ),
+                                  child: Text('tamil'.tr()),
+                                ),
                               ],
                             ),
                           ],
