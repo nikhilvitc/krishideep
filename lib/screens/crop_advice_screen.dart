@@ -6,7 +6,7 @@ import '../models/crop_advice.dart';
 import 'crop_result_screen.dart';
 
 class CropAdviceScreen extends StatefulWidget {
-  const CropAdviceScreen({Key? key}) : super(key: key);
+  const CropAdviceScreen({super.key});
 
   @override
   State<CropAdviceScreen> createState() => _CropAdviceScreenState();

@@ -38,7 +38,7 @@ class AppTheme {
       ),
 
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         color: surfaceColor,
@@ -84,7 +84,7 @@ class AppTheme {
       ),
 
       // Bottom Navigation Bar Theme
-      bottomNavigationBarTheme: const BottomNavigationBarTheme(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         selectedItemColor: primaryColor,
@@ -166,7 +166,7 @@ class AppTheme {
       ),
 
       // Card Theme
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         color: const Color(0xFF1E1E1E),
@@ -212,7 +212,7 @@ class AppTheme {
       ),
 
       // Bottom Navigation Bar Theme
-      bottomNavigationBarTheme: const BottomNavigationBarTheme(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xFF1E1E1E),
         selectedItemColor: primaryLightColor,

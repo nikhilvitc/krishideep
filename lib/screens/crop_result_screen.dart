@@ -8,10 +8,10 @@ class CropResultScreen extends StatelessWidget {
   final CropAdviceRequest request;
 
   const CropResultScreen({
-    Key? key,
+    super.key,
     required this.recommendation,
     required this.request,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +51,9 @@ class CropResultScreen extends StatelessWidget {
                           color: Colors.green.shade700,
                         ),
                         const SizedBox(height: 12),
-                        Text(
+                        const Text(
                           'Analysis Complete',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -104,9 +104,9 @@ class CropResultScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'Your Field Data',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -161,15 +161,15 @@ class CropResultScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(20.0),
                       child: Column(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.warning_amber,
                             size: 48,
                             color: Colors.orange,
                           ),
                           const SizedBox(height: 12),
-                          Text(
+                          const Text(
                             'No suitable crops found for your conditions.',
-                            style: const TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 16),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 8),

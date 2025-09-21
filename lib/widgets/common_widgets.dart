@@ -5,7 +5,7 @@ class LoadingWidget extends StatelessWidget {
   final String? message;
   final Color? color;
 
-  const LoadingWidget({Key? key, this.message, this.color}) : super(key: key);
+  const LoadingWidget({super.key, this.message, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,7 @@ class ErrorWidget extends StatelessWidget {
   final VoidCallback? onRetry;
   final IconData? icon;
 
-  const ErrorWidget({Key? key, required this.message, this.onRetry, this.icon})
-    : super(key: key);
+  const ErrorWidget({super.key, required this.message, this.onRetry, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -78,14 +77,14 @@ class CustomCard extends StatelessWidget {
   final VoidCallback? onTap;
 
   const CustomCard({
-    Key? key,
+    super.key,
     required this.child,
     this.padding,
     this.margin,
     this.color,
     this.elevation,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +123,7 @@ class CustomButton extends StatelessWidget {
   final double? height;
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     this.onPressed,
     this.icon,
@@ -133,7 +132,7 @@ class CustomButton extends StatelessWidget {
     this.isLoading = false,
     this.width,
     this.height,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +193,7 @@ class CustomTextField extends StatelessWidget {
   final bool enabled;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     required this.label,
     this.hint,
     this.prefixIcon,
@@ -206,7 +205,7 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.maxLines = 1,
     this.enabled = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -236,11 +235,11 @@ class AnimatedListItem extends StatelessWidget {
   final Duration? duration;
 
   const AnimatedListItem({
-    Key? key,
+    super.key,
     required this.child,
     required this.index,
     this.duration,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -266,12 +265,12 @@ class SectionHeader extends StatelessWidget {
   final VoidCallback? onMoreTap;
 
   const SectionHeader({
-    Key? key,
+    super.key,
     required this.title,
     this.subtitle,
     this.icon,
     this.onMoreTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -310,13 +309,13 @@ class EmptyStateWidget extends StatelessWidget {
   final VoidCallback? onActionPressed;
 
   const EmptyStateWidget({
-    Key? key,
+    super.key,
     required this.title,
     required this.subtitle,
     required this.icon,
     this.actionText,
     this.onActionPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

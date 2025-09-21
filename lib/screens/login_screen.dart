@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import '../services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -43,7 +44,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // App Logo/Icon
-                  Icon(Icons.agriculture, size: 80, color: Colors.white),
+                  Container(
+                    width: 80,
+                    height: 80,
+                    child: Image.asset(
+                      'assets/images/krisi_deep_logo.png',
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(Icons.agriculture,
+                            size: 80, color: Colors.white);
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 16),
                   Text(
                     'app_name'.tr(),
@@ -234,12 +248,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
                                       context.locale.languageCode == 'en'
-                                      ? Colors.green.shade700
-                                      : Colors.grey.shade300,
+                                          ? Colors.green.shade700
+                                          : Colors.grey.shade300,
                                   foregroundColor:
                                       context.locale.languageCode == 'en'
-                                      ? Colors.white
-                                      : Colors.black,
+                                          ? Colors.white
+                                          : Colors.black,
                                 ),
                                 child: Text('english'.tr()),
                               ),
@@ -250,12 +264,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor:
                                       context.locale.languageCode == 'hi'
-                                      ? Colors.green.shade700
-                                      : Colors.grey.shade300,
+                                          ? Colors.green.shade700
+                                          : Colors.grey.shade300,
                                   foregroundColor:
                                       context.locale.languageCode == 'hi'
-                                      ? Colors.white
-                                      : Colors.black,
+                                          ? Colors.white
+                                          : Colors.black,
                                 ),
                                 child: Text('hindi'.tr()),
                               ),
@@ -282,23 +296,38 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
-      // Simulate OTP sending delay
-      await Future.delayed(const Duration(seconds: 2));
+      final authService = AuthService();
+      await authService.sendOTP(
+        phoneNumber: '+91${_phoneController.text}',
+        onCodeSent: (verificationId) {
+          _verificationId = verificationId;
+          setState(() {
+            _isOtpSent = true;
+            _isLoading = false;
+          });
 
-      // In a real app, you would integrate with Firebase Auth here
-      // For demonstration, we'll just simulate the process
-      _verificationId = 'demo_verification_id';
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('OTP sent successfully! Use 123456 for demo'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        },
+        onError: (error) {
+          setState(() {
+            _isLoading = false;
+          });
 
-      setState(() {
-        _isOtpSent = true;
-        _isLoading = false;
-      });
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('OTP sent successfully! Use 123456 for demo'),
-          backgroundColor: Colors.green,
-        ),
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Failed to send OTP: $error'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        },
+        onAutoVerify: (credential) {
+          // Auto-verify handled by service
+        },
       );
     } catch (e) {
       setState(() {
@@ -322,15 +351,17 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     try {
-      // Simulate OTP verification delay
-      await Future.delayed(const Duration(seconds: 2));
+      final authService = AuthService();
+      final user = await authService.verifyOTP(
+        verificationId: _verificationId,
+        smsCode: _otpController.text,
+      );
 
-      // For demonstration, accept 123456 as valid OTP
-      if (_otpController.text == '123456') {
+      if (user != null) {
         // Navigate to main app
         Navigator.of(context).pushReplacementNamed('/main');
       } else {
-        throw Exception('Invalid OTP');
+        throw Exception('Authentication failed');
       }
     } catch (e) {
       setState(() {

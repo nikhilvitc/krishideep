@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
 import 'screens/login_screen.dart';
@@ -11,17 +11,16 @@ import 'services/auth_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase
-  try {
-    await Firebase.initializeApp();
-  } catch (e) {
-    print('Firebase initialization failed: $e');
-    // Continue without Firebase for demo purposes
-  }
+  // Initialize Firebase - Disabled for web compatibility
+  // try {
+  //   await Firebase.initializeApp();
+  // } catch (e) {
+  //   print('Firebase initialization failed: $e');
+  //   // Continue without Firebase for demo purposes
+  // }
 
   // Initialize EasyLocalization
   await EasyLocalization.ensureInitialized();
-
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('hi')],
@@ -33,7 +32,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
           return MaterialApp(
-            title: 'SIH Crop Advisor',
+            title: 'Krisi Deep',
             debugShowCheckedModeBanner: false,
 
             // Localization
@@ -83,9 +82,8 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.light
-        ? ThemeMode.dark
-        : ThemeMode.light;
+    _themeMode =
+        _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
 
@@ -122,7 +120,7 @@ class AuthProvider extends ChangeNotifier {
 
 // Splash Screen
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -169,6 +167,24 @@ class _SplashScreenState extends State<SplashScreen>
     }
   }
 
+  // Build app logo - handles both image asset and fallback icon
+  Widget _buildAppLogo() {
+    return Image.asset(
+      'assets/images/krisi_deep_logo.png',
+      width: 100,
+      height: 100,
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        // Fallback to icon if logo image not found
+        return Icon(
+          Icons.agriculture,
+          size: 60,
+          color: Colors.green.shade700,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -191,34 +207,32 @@ class _SplashScreenState extends State<SplashScreen>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // App Icon
+                      // App Icon/Logo
                       Container(
                         width: 120,
                         height: 120,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black26,
                               blurRadius: 20,
-                              offset: const Offset(0, 10),
+                              offset: Offset(0, 10),
                             ),
                           ],
                         ),
-                        child: Icon(
-                          Icons.agriculture,
-                          size: 60,
-                          color: Colors.green.shade700,
+                        child: ClipOval(
+                          child: _buildAppLogo(),
                         ),
                       ),
 
                       const SizedBox(height: 30),
 
                       // App Name
-                      Text(
-                        'SIH Crop Advisor',
-                        style: const TextStyle(
+                      const Text(
+                        'Krisi Deep',
+                        style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -228,9 +242,9 @@ class _SplashScreenState extends State<SplashScreen>
                       const SizedBox(height: 12),
 
                       // Tagline
-                      Text(
+                      const Text(
                         'Smart Farming Solutions',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 16,
                           color: Colors.white70,
                         ),
@@ -246,9 +260,9 @@ class _SplashScreenState extends State<SplashScreen>
                       const SizedBox(height: 20),
 
                       // Loading Text
-                      Text(
+                      const Text(
                         'Initializing...',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
                           color: Colors.white70,
                         ),

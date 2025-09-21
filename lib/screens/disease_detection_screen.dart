@@ -6,7 +6,7 @@ import '../services/crop_service.dart';
 import '../models/disease_detection.dart';
 
 class DiseaseDetectionScreen extends StatefulWidget {
-  const DiseaseDetectionScreen({Key? key}) : super(key: key);
+  const DiseaseDetectionScreen({super.key});
 
   @override
   State<DiseaseDetectionScreen> createState() => _DiseaseDetectionScreenState();

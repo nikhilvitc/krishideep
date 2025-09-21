@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class ContactScreen extends StatelessWidget {
-  const ContactScreen({Key? key}) : super(key: key);
+  const ContactScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -301,9 +301,9 @@ class ContactScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           'Follow Us',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),

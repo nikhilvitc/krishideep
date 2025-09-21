@@ -4,7 +4,7 @@ import '../services/knowledge_service.dart';
 import '../models/faq.dart';
 
 class KnowledgeScreen extends StatefulWidget {
-  const KnowledgeScreen({Key? key}) : super(key: key);
+  const KnowledgeScreen({super.key});
 
   @override
   State<KnowledgeScreen> createState() => _KnowledgeScreenState();
