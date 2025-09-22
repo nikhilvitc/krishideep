@@ -320,7 +320,7 @@ class FinancialAdvisoryService {
         'typeHindi': 'ड्रिप सिंचाई प्रणाली',
         'cost': 80000.0,
         'expectedROI': 25.0,
-        'paybackPeriod': 36,
+        'paybackPeriod': 36.0,
         'description':
             'Reduces water consumption by 40% and increases crop yield',
         'descriptionHindi':
@@ -331,7 +331,7 @@ class FinancialAdvisoryService {
         'typeHindi': 'सोलर वाटर पंप',
         'cost': 120000.0,
         'expectedROI': 30.0,
-        'paybackPeriod': 48,
+        'paybackPeriod': 48.0,
         'description':
             'Eliminates electricity bills and provides reliable water supply',
         'descriptionHindi':
@@ -342,7 +342,7 @@ class FinancialAdvisoryService {
         'typeHindi': 'कृषि यंत्रीकरण',
         'cost': 200000.0,
         'expectedROI': 20.0,
-        'paybackPeriod': 60,
+        'paybackPeriod': 60.0,
         'description': 'Reduces labor costs and increases farming efficiency',
         'descriptionHindi': 'श्रम लागत कम करता है और कृषि दक्षता बढ़ाता है',
       },
@@ -377,7 +377,7 @@ class FinancialAdvisoryService {
               'bankLoan': {
                 'amount': gapFunding * 0.8,
                 'interestRate': 8.5,
-                'tenure': 60,
+                'tenure': 60.0,
                 'monthlyEMI': _calculateEMI(gapFunding * 0.8, 8.5, 60),
               },
               'governmentSubsidy': {
@@ -493,12 +493,12 @@ class FinancialAdvisoryService {
       'upcomingPayments': [
         {
           'type': 'Loan EMI',
-          'amount': 8500,
+          'amount': 8500.0,
           'date': DateTime.now().add(Duration(days: 5))
         },
         {
           'type': 'Insurance Premium',
-          'amount': 12000,
+          'amount': 12000.0,
           'date': DateTime.now().add(Duration(days: 15))
         },
       ],

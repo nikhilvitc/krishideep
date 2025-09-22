@@ -141,15 +141,20 @@ class AppTheme {
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
+      brightness: Brightness.dark,
       colorScheme: const ColorScheme.dark(
         primary: primaryLightColor,
         onPrimary: Colors.black,
         secondary: accentColor,
         onSecondary: Colors.black,
-        surface: Color(0xFF1E1E1E),
+        surface: Color(0xFF121212),
         onSurface: Colors.white,
+        background: Color(0xFF121212),
+        onBackground: Colors.white,
         error: errorColor,
         onError: Colors.white,
+        surfaceVariant: Color(0xFF2C2C2C),
+        onSurfaceVariant: Colors.white70,
       ),
 
       // AppBar Theme
@@ -164,6 +169,9 @@ class AppTheme {
           color: Colors.white,
         ),
       ),
+
+      // Scaffold Background
+      scaffoldBackgroundColor: const Color(0xFF121212),
 
       // Card Theme
       cardTheme: CardThemeData(
@@ -209,6 +217,8 @@ class AppTheme {
           horizontal: 16,
           vertical: 16,
         ),
+        labelStyle: const TextStyle(color: Colors.white70),
+        hintStyle: const TextStyle(color: Colors.white54),
       ),
 
       // Bottom Navigation Bar Theme

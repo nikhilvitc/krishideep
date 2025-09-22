@@ -68,12 +68,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'welcome'.tr(),
-                      style:
-                          const TextStyle(fontSize: 16, color: Colors.white70),
-                    ),
                     const SizedBox(height: 48),
 
                     // Login Card

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'home_screen.dart';
+import 'home_screen_new.dart';
 import 'crop_advice_screen.dart';
 import 'disease_detection_screen.dart';
 import 'knowledge_screen.dart';
 import 'contact_screen.dart';
+import 'profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,11 +18,12 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    const HomeScreen(),
+    const HomeScreenNew(),
     const CropAdviceScreen(),
     const DiseaseDetectionScreen(),
     const KnowledgeScreen(),
     const ContactScreen(),
+    const ProfileScreen(),
   ];
 
   @override
@@ -58,6 +60,10 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
             icon: const Icon(Icons.contact_support),
             label: 'contact_support'.tr(),
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(Icons.person),
+            label: 'profile'.tr(),
           ),
         ],
       ),

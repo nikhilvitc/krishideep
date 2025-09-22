@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'iot_dashboard_screen_simple.dart';
+import 'analytics_dashboard_screen.dart';
+import 'government_schemes_screen.dart';
+import 'financial_advisory_screen.dart';
+import 'farmer_community_screen.dart';
+import '../widgets/image_carousel.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -43,48 +48,17 @@ class HomeScreen extends StatelessWidget {
             child: AnimationLimiter(
               child: Column(
                 children: [
-                  // Welcome Section
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.9),
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 10,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.agriculture,
-                          size: 48,
-                          color: Colors.green.shade700,
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'welcome'.tr(),
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green.shade800,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'Smart farming solutions at your fingertips',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade600,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
+                  // Image Carousel
+                  ImageCarousel(
+                    imagePaths: [
+                      'assets/images/image1sc.png',
+                      'assets/images/image2sc.png',
+                      'assets/images/image3sc.png',
+                      'assets/images/image4sc.png',
+                      'assets/images/image5sc.png',
+                    ],
+                    autoScrollDuration: const Duration(seconds: 5),
+                    height: 250,
                   ),
 
                   const SizedBox(height: 24),
@@ -121,8 +95,12 @@ class HomeScreen extends StatelessWidget {
                             'analytics_dashboard'.tr(),
                             'ai_predictions'.tr(),
                             Colors.purple,
-                            () =>
-                                _showComingSoon(context, 'analytics_dashboard'.tr()),
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const AnalyticsDashboardScreen()),
+                            ),
                           ),
                           _buildFeatureCard(
                             context,
@@ -130,8 +108,12 @@ class HomeScreen extends StatelessWidget {
                             'government_schemes'.tr(),
                             'subsidies'.tr(),
                             Colors.green,
-                            () =>
-                                _showComingSoon(context, 'government_schemes'.tr()),
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const GovernmentSchemesScreen()),
+                            ),
                           ),
                           _buildFeatureCard(
                             context,
@@ -139,8 +121,12 @@ class HomeScreen extends StatelessWidget {
                             'financial_advisory'.tr(),
                             'financial_planning'.tr(),
                             Colors.orange,
-                            () =>
-                                _showComingSoon(context, 'financial_advisory'.tr()),
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const FinancialAdvisoryScreen()),
+                            ),
                           ),
                           _buildFeatureCard(
                             context,
@@ -148,7 +134,12 @@ class HomeScreen extends StatelessWidget {
                             'farmer_community'.tr(),
                             'community_support'.tr(),
                             Colors.teal,
-                            () => _showComingSoon(context, 'farmer_community'.tr()),
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const FarmerCommunityScreen()),
+                            ),
                           ),
                           _buildFeatureCard(
                             context,
@@ -304,48 +295,6 @@ class HomeScreen extends StatelessWidget {
         content: Text('Navigate to tab $index'),
         duration: const Duration(seconds: 1),
       ),
-    );
-  }
-
-  void _showComingSoon(BuildContext context, String featureName) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('$featureName'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.rocket_launch,
-                size: 48,
-                color: Colors.blue.shade600,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'coming_soon'.tr(),
-                style: const TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'backend_ready'.tr(),
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey.shade600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('ok'.tr()),
-            ),
-          ],
-        );
-      },
     );
   }
 }
